@@ -1,0 +1,63 @@
+<!--订单页面 -->
+<template>
+    <div style="background-color:#f2f2f2 ">
+        <title-bar  height = "{{height}}" background-color="{{backgroundColor}}" title="{{title}}" title-color="{{titleColor}}" title-size="{{titleSize}}"></title-bar>
+        <div class="order-title" style="margin-top: {{height}};">
+            <text class="  {{currentIndex == 0 ? 'order-title-text-sel' : 'order-title-text'}}">全部</text>
+            <text class="  {{currentIndex == 1 ? 'order-title-text-sel' : 'order-title-text'}}">待付款</text>
+            <text class="  {{currentIndex == 2 ? 'order-title-text-sel' : 'order-title-text'}}">未消费</text>
+            <text class="  {{currentIndex == 3 ? 'order-title-text-sel' : 'order-title-text'}}">已消费</text>
+        </div>
+        <slider auto-play="false" style="width: 750px;height: 1048px;" onchange="slideChange" >
+           <div repeat="{{txt in orderList}}" style="justify-content: center;align-items: center;width: 750px;height: 1048px;">
+                <text>{{txt}}</text>
+           </div>
+         </slider>
+    </div>
+</template>
+
+<style>
+    .order-title{
+        flex-direction: row;
+        height: 84px;
+        background-color: #ffffff;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .order-title-text{
+       flex: 1;
+       text-align: center;
+       color: #989898;
+    }
+    .order-title-text-sel{
+        flex: 1;
+        text-align: center;
+        color: #00D0C6;
+    }
+</style>
+
+<script>
+    require('../component/title-bar.we');
+    module.exports = {
+        data:{
+            height:100,
+            backgroundColor:"#f7f7f7",
+            title:"我的订单",
+            titleColor:"#2d2d2d",
+            titleSize:32,
+            orderList:['全部','待付款','未消费','已消费'],
+            currentIndex:0,
+        },
+        created:function(){
+           // var height    = this.$getConfig().env.deviceWidth;
+           // console.log('the device height is '+ height);
+        },
+        methods:{
+            slideChange: function (e) {
+               this.currentIndex = e.index;
+                console.log('the currentIndex is '+ this.currentIndex);
+            }
+        }
+    }
+</script>
