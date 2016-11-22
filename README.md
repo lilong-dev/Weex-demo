@@ -1,3 +1,3 @@
 # Weex-demo
 
-<img src="weex.gif" width=400 height=680 />
+<img src="/screen/weex.gif" width=400 height=680 />
