@@ -152,7 +152,7 @@
         },
         created:function(){
             /**
-             * 更改字体的缩进，使得字体显示不同的字体
+             * 更改字体的缩进，使得字体显示不同的颜色
              */
             for(var i = 0;i < this.topicItemData.categoryTitle.length+2;i++){
                 this.topicItemData.content = "　"+this.topicItemData.content;
