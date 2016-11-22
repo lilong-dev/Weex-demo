@@ -50,8 +50,6 @@
             currentIndex:0,
         },
         created:function(){
-           // var height    = this.$getConfig().env.deviceWidth;
-           // console.log('the device height is '+ height);
         },
         methods:{
             slideChange: function (e) {

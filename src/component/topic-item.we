@@ -11,7 +11,11 @@
             </div>
 
             <!--帖子说明-->
-            <text class="topic-text">#{{topicItemData.categoryTitle}}# {{topicItemData.content}}</text>
+            <div>
+                <text class="topic-text-cate">#{{topicItemData.categoryTitle}}#</text>
+                <text class="topic-text">{{topicItemData.content}}</text>
+            </div>
+
             <!--图片 -->
             <div style="margin-top: 21px">
                 <div repeat="{{rowItem in newTopicImages}}">
@@ -112,6 +116,11 @@
         font-size:29px ;
         line-height:40px ;
     }
+    .topic-text-cate{
+       color: #00cfc7;
+       position: absolute;
+        font-size:29px
+    }
 </style>
 
 <script>
@@ -142,6 +151,12 @@
             newTopicImages:[],
         },
         created:function(){
+            /**
+             * 更改字体的缩进，使得字体显示不同的字体
+             */
+            for(var i = 0;i < this.topicItemData.categoryTitle.length+2;i++){
+                this.topicItemData.content = "　"+this.topicItemData.content;
+            }
             if(this.topicItemData.images.length == 4){
                 columnNum = 2;
             }else{

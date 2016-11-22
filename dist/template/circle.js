@@ -2280,13 +2280,27 @@
 	          ]
 	        },
 	        {
-	          "type": "text",
-	          "classList": [
-	            "topic-text"
-	          ],
-	          "attr": {
-	            "value": function () {return '#' + (this.topicItemData.categoryTitle) + '# ' + (this.topicItemData.content)}
-	          }
+	          "type": "div",
+	          "children": [
+	            {
+	              "type": "text",
+	              "classList": [
+	                "topic-text-cate"
+	              ],
+	              "attr": {
+	                "value": function () {return '#' + (this.topicItemData.categoryTitle) + '#'}
+	              }
+	            },
+	            {
+	              "type": "text",
+	              "classList": [
+	                "topic-text"
+	              ],
+	              "attr": {
+	                "value": function () {return this.topicItemData.content}
+	              }
+	            }
+	          ]
 	        },
 	        {
 	          "type": "div",
@@ -2519,6 +2533,11 @@
 	    "color": "#313030",
 	    "fontSize": 29,
 	    "lineHeight": 40
+	  },
+	  "topic-text-cate": {
+	    "color": "#00cfc7",
+	    "position": "absolute",
+	    "fontSize": 29
 	  }
 	}
 
@@ -2555,6 +2574,9 @@
 	        newTopicImages: []
 	    }},
 	    created: function created() {
+	        for (var i = 0; i < this.topicItemData.categoryTitle.length + 2; i++) {
+	            this.topicItemData.content = "　" + this.topicItemData.content;
+	        }
 	        if (this.topicItemData.images.length == 4) {
 	            columnNum = 2;
 	        } else {

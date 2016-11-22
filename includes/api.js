@@ -17,7 +17,7 @@ var apiURL = {
 };
 function getData(url, callback) {
     stream.fetch({
-        method: 'POST',
+        method: 'GET',
         url: url,
         type:'json'
     }, function (ret) {
