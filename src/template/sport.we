@@ -93,6 +93,7 @@
             titleColor: "#2d2d2d",
             titleSize: 32,
             sportData: [],
+            //模拟数据
             /*{"id":48,"image":"http://cdn.qiyestore.com/openapi/upload/2016/08/01/e2UELZQ333.jpg","title":"功能性训练的优势","starName":"中级难度","starNum":3,"keyWords":["大众健身","竞技运动"]},
              {"id":47,"image":"http://cdn.qiyestore.com/openapi/upload/2016/08/01/uU2k4Jt9Sg.jpg","title":"FMS测试","starName":"高级难度","starNum":5,"keyWords":["FMS测试","人体测试","专业教练测试"]},
              {"id":35,"image":"http://cdn.qiyestore.com/openapi/upload/2016/07/21/754366bLQ2.jpg","title":"功能训练之壶铃篇","starName":"高级难度","starNum":4,"keyWords":["壶铃","力量","稳定性","平衡性"]},
