@@ -302,6 +302,9 @@
 	        {
 	          "type": "text",
 	          "classList": function () {return [this.currentIndex==0?'order-title-text-sel':'order-title-text']},
+	          "events": {
+	            "click": function ($event) {this.orderTitleChange(0,$event)}
+	          },
 	          "attr": {
 	            "value": "全部"
 	          }
@@ -309,6 +312,9 @@
 	        {
 	          "type": "text",
 	          "classList": function () {return [this.currentIndex==1?'order-title-text-sel':'order-title-text']},
+	          "events": {
+	            "click": function ($event) {this.orderTitleChange(1,$event)}
+	          },
 	          "attr": {
 	            "value": "待付款"
 	          }
@@ -316,6 +322,9 @@
 	        {
 	          "type": "text",
 	          "classList": function () {return [this.currentIndex==2?'order-title-text-sel':'order-title-text']},
+	          "events": {
+	            "click": function ($event) {this.orderTitleChange(2,$event)}
+	          },
 	          "attr": {
 	            "value": "未消费"
 	          }
@@ -323,6 +332,9 @@
 	        {
 	          "type": "text",
 	          "classList": function () {return [this.currentIndex==3?'order-title-text-sel':'order-title-text']},
+	          "events": {
+	            "click": function ($event) {this.orderTitleChange(3,$event)}
+	          },
 	          "attr": {
 	            "value": "已消费"
 	          }
@@ -330,38 +342,35 @@
 	      ]
 	    },
 	    {
-	      "type": "slider",
-	      "attr": {
-	        "autoPlay": "false"
-	      },
+	      "type": "div",
 	      "style": {
-	        "width": 750,
-	        "height": 1048
-	      },
-	      "events": {
-	        "change": "slideChange"
+	        "paddingRight": 34,
+	        "paddingLeft": 34
 	      },
 	      "children": [
 	        {
 	          "type": "div",
-	          "repeat": {
-	            "expression": function () {return this.orderList},
-	            "value": "txt"
-	          },
-	          "style": {
-	            "justifyContent": "center",
-	            "alignItems": "center",
-	            "width": 750,
-	            "height": 1048
-	          },
-	          "children": [
-	            {
-	              "type": "text",
-	              "attr": {
-	                "value": function () {return this.txt}
-	              }
-	            }
+	          "id": "tabIndicator",
+	          "classList": [
+	            "tab-indicator"
 	          ]
+	        }
+	      ]
+	    },
+	    {
+	      "type": "div",
+	      "classList": [
+	        "order-content"
+	      ],
+	      "children": [
+	        {
+	          "type": "text",
+	          "style": {
+	            "fontSize": 40
+	          },
+	          "attr": {
+	            "value": function () {return this.orderList[this.currentIndex]}
+	          }
 	        }
 	      ]
 	    }
@@ -384,12 +393,25 @@
 	  "order-title-text": {
 	    "flex": 1,
 	    "textAlign": "center",
-	    "color": "#989898"
+	    "color": "#989898",
+	    "fontSize": 30
 	  },
 	  "order-title-text-sel": {
 	    "flex": 1,
 	    "textAlign": "center",
-	    "color": "#00D0C6"
+	    "color": "#00D0C6",
+	    "fontSize": 30
+	  },
+	  "tab-indicator": {
+	    "height": 3,
+	    "width": 120,
+	    "backgroundColor": "#00D0C6"
+	  },
+	  "order-content": {
+	    "width": 750,
+	    "height": 1048,
+	    "justifyContent": "center",
+	    "alignItems": "center"
 	  }
 	}
 
@@ -398,8 +420,9 @@
 /***/ 121:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function(module, exports, __weex_require__){"use strict";
+	module.exports = function(module, exports, __weex_require__){'use strict';
 
+	var animation = __weex_require__('@weex-module/animation');
 	__webpack_require__(108);
 	module.exports = {
 	    data: function () {return {
@@ -415,7 +438,19 @@
 	    methods: {
 	        slideChange: function slideChange(e) {
 	            this.currentIndex = e.index;
-	            console.log('the currentIndex is ' + this.currentIndex);
+	            this.orderTitleChange(this.currentIndex);
+	        },
+	        orderTitleChange: function orderTitleChange(index) {
+	            this.currentIndex = index;
+	            var tabIndicatior = this.$el('tabIndicator');
+	            var offset = 187.5 * index;
+	            animation.transition(tabIndicatior, {
+	                styles: {
+	                    transform: 'translate(' + offset + ', 0)'
+	                },
+	                duration: 200,
+	                timingFunction: 'ease',
+	                'transform-origin': 'center center' }, function () {});
 	        }
 	    }
 	};}
