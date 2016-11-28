@@ -22,10 +22,10 @@
             </div>
 
             <div class="item-group">
-                <div class="divider">
+                <div class="divider" onclick="goMyPublish">
                     <mine-item left-image="/images/ic_member_publish.png" item-text="我的发布" icon-width = 38px icon-height = 30px></mine-item>
                 </div>
-                <mine-item left-image="/images/ic_member_order.png" item-text="我的订单" icon-width = 28px icon-height = 30px></mine-item>
+                <mine-item left-image="/images/ic_member_order.png" item-text="我的订单" icon-width = 28px icon-height = 30px onclick="goMyOrder"></mine-item>
             </div>
 
             <div class="item-group">
@@ -113,10 +113,32 @@
 </style>
 
 <script>
+    var navigator = require('@weex-module/navigator');
     require('../component/mine-item.we');
     module.exports = {
         data:{
             isLoagin:false,
+        },
+        methods:{
+            goMyPublish:function(){
+               var params = {
+                    'url': 'http://192.168.1.44:8081/dist/template/mytopic.js',
+                    'animated': 'true'
+                };
+                navigator.push(params, function (e) {
+                    //callback
+                });
+
+            },
+            goMyOrder:function(){
+                var params = {
+                    'url': 'http://192.168.1.44:8081/dist/template/myorder.js',
+                    'animated': 'true'
+                };
+                navigator.push(params, function (e) {
+                    //callback
+                });
+            }
         }
     }
 </script>

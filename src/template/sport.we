@@ -114,6 +114,26 @@
             })
 
         },
-        methods: {}
+        methods: {
+            oncellclick:function(e){
+                //点击了某个cell
+                //var storage = require('@weex-module/storage');
+                let navigator = require('@weex-module/navigator');
+                console.log('你点击了cell'+ e.target.attr.index);
+
+               // var bundleUrl = this.$getConfig().bundleUrl;
+               // var base      = apis.getBaseUrl(bundleUrl)+'oneDetail.js?dlg_title='+ this.getResult[e.target.attr.index]['id'];
+                var params = {
+                    'url': 'http://192.168.1.44:8081/dist/template/oneDetail.js',
+                    'animated':'true',
+                }
+                navigator.push(params,function(e){
+                    //callback
+                    console.log('callbackbakc!');
+                });
+
+//                });
+            },
+        }
     }
 </script>
